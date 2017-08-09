@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block body %}
+
+    <main class="card-container">
+    {% for manufacturer in manufactureres %}
+
+        <div class="card">
+                <a href="{{ url_for('u_manufacturer', manufacturer_id = manufacturer.id) }}">
+                    <img class="image" src="../../static/uploads/images/{{ manufacturer.up_file }}">
+                <h3 class="card-title">{{ manufacturer.name }}</h3>
+                <p class="card-subtitle">{{ manufacturer.description }}</p></a>
+                <div class="card-actions w-clearfix">
+                    <div class="card-actions-container w-clearfix">
+                    </div>
+                </div>
+            </div>
+
+    {% endfor %}
+
+    </main>
+
+{% endblock %}

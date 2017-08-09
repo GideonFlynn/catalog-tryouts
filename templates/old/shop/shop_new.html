@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+    <div class="form-section">
+        <div class="form-container">
+            <div class="form-block w-form">
+                <form method="post" class="form" action="{{ url_for('new_shop') }}" enctype=multipart/form-data>
+                    <label class="field-label" for="Input">Name:</label>
+                    <input autofocus="autofocus" class="input-field w-input" maxlength="256"
+                           name="name" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Description:</label>
+                    <input class="input-field w-input" maxlength="1024"
+                           name="description" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Id:</label>
+                    <input autofocus="autofocus" class="input-field w-input" maxlength="256"
+                           name="id" type="number" placeholder=''>
+                    <input type=file name=file>
+                    <input class="submit-button w-button" type='submit' value='Create'>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

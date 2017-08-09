@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block content %}
+    <main class="card-container">
+        <div class="form-section">
+            <div class="form-container w-form">
+                <form method="post" class="form" action="{{ url_for('new_shop') }}"
+                      enctype="multipart/form-data">
+                    <h2 class="form-header">Lav ny producent</h2>
+                    <h4 class="field-label required">Felter med * skal udfyldes</h4>
+                    <div class="form-row">
+                        <label class="field-label" for="Input">Navn*</label>
+                        <input autofocus="autofocus" class="text-field w-input" maxlength="256"
+                               name="name" type="text" placeholder=''>
+                    </div>
+                    <div class="form-row">
+                        <label class="field-label" for="Input">Beskrivelse*</label>
+                        <textarea
+                                  class="text-field-area w-input" maxlength="256" name="description" type="text"
+                                  placeholder=''></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label class="field-label" for="Input">Id*</label>
+                        <input class="text-field w-input" maxlength="256"
+                               name="id" type="text" placeholder=''>
+                    </div>
+                    <div class="form-row">
+                        <input type=file accept="image/*" name=file>
+                        <input class="submit-btn w-button" type='submit' value='Tilføj'>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

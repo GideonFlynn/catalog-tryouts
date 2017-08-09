@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% block delete %}
+<main class="card-container">
+    <div class="form-section">
+      <div class="form-container w-form">
+        <form class="form" action="{{ url_for('delete_shop', shop_id = shop.id) }}" method="POST">
+          <h2 class="form-header">Vil du virkelig slette</h2>
+            <h3 class="form-header">{{ shop.name }}?</h3>
+          <div class="form-row"></div>
+            <input class="submit-btn w-button" type='submit' value='Slet'>
+        </form>
+      </div>
+    </div>
+</main>
+{% endblock %}

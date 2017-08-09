@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block body %}
+
+    <div class="categories category">
+        <h1 class="heading-2">{{ category.name }}</h1>
+        <p class="paragraph-2">{{ category.description }}</p>
+        <div class="categories-row div-row">
+
+            {% for item in item %}
+
+                <div class="card category item"><a
+                        href="{{ url_for('u_items', item_id = item.id, category_id = category.id) }}">
+                    <div class="image"><img src="../../static/uploads/images/{{ item.up_file }}"></div>
+                    <div class="content">
+                        <h1 class="heading">{{ item.name }}</h1>
+                        <p class="paragraph">{{ item.description }}</p>
+                    </div>
+                </a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

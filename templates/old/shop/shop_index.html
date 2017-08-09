@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block body %}
+    {% for shop in shops %}
+
+        <div class="card category"><a href="{{ url_for('u_shop', shop_id = shop.id) }}">
+            <div class="image"><img src="../../static/uploads/images/{{ shop.up_file }}"></div>
+            <div class="content">
+                <h1 class="heading">{{ shop.name }}</h1>
+                <p class="paragraph">{{ shop.description }}</p>
+            </div>
+        </a>
+        </div>
+
+    {% endfor %}
+{% endblock %}

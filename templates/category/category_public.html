@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <main class="card-container">
+    <h1 class="front-header">{{ category.name }}</h1>
+    <img class="image big" src="../../static/uploads/images/{{ category.up_file }}">
+    <h3 class="front-header">{{ category.description }}</h3>
+
+    {% for item in item %}
+
+        <div class="card">
+            <a href="{{ url_for('u_items', category_id = category.id, item_id = item.id) }}">
+                <img class="image" src="../../static/uploads/images/{{ item.up_file }}">
+                <h3 class="card-title">{{ item.name }}</h3>
+                 <p class="card-subtitle">{{ item.description }}</p></a>
+            <div class="card-actions w-clearfix">
+                <div class="card-actions-container w-clearfix">
+                    <a class="card-ingredients w-button"
+                       data-ix="show-ingredients">Ingredienser</a>
+                    <p class="ingredients-text">{{ item.ingredients }}</p>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</main>
+
+{% endblock %}

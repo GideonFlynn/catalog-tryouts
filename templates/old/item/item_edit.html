@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div class="form-section">
+        <div class="form-container">
+            <div class="form-block w-form">
+                <h1 class="heading-2">{{ item.name }}</h1>
+                <form method="post" class="form"
+                      action="{{ url_for('edit_item', item_id = item.id, category_id = category.id) }}"
+                      enctype=multipart/form-data>
+                    <label class="field-label" for="Input">Item name:</label>
+                    <input autofocus="autofocus" class="input-field w-input" maxlength="256"
+                           name="name" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Description:</label>
+                    <input class="input-field w-input" maxlength="1024"
+                           name="description" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Ingredients:</label>
+                    <input class="input-field w-input" maxlength="1024"
+                           name="ingredients" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Manufacturer ID:</label>
+                    <input class="input-field w-input" maxlength="1024"
+                           name="manufacturer_id" type="text" placeholder=''>
+                    <label class="field-label" for="Input">Shop ID:</label>
+                    <input class="input-field w-input" maxlength="1024"
+                           name="shop_id" type="text" placeholder=''>
+                    <input type=file name=file>
+                    <input class="submit-button w-button" type='submit' value='Create'>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

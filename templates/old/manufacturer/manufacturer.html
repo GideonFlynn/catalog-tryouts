@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div class="categories shop">
+        <h1 class="heading-2">{{ manufacturer.name }}</h1>
+        <p class="paragraph-2">{{ manufacturer.description }}</p>
+        <div class="image shop-image"><img src="../../static/uploads/images/{{ manufacturer.up_file }}"></div>
+        <div class="divider"></div>
+        <p class="paragraph-3">{{ manufacturer.description }}</p>
+        <div class="content edit">
+            <a class="button w-button edit"
+               href="{{ url_for('edit_manufacturer', manufacturer_id = manufacturer.id) }}">Edit</a>
+        </div>
+    </div>
+{% endblock %}

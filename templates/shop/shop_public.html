@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <main class="card-container">
+        <img class="image big" src="../../../static/uploads/images/{{ shop.up_file }}">
+        <h1 class="front-header">{{ shop.name }}</h1>
+        <div class="card">
+            <img class="image" src="../../../static/uploads/images/{{ shop.up_file }}">
+            <h3 class="card-title">{{ shop.description }}</h3>
+            <p class="card-subtitle">{{ shop.shop_id }}</p>
+            <p class="card-subtitle">{{ shop.manufacturer_id }}</p>
+            <p class="card-subtitle">{{ shop.ingredients }}</p>
+        </div>
+        <div class="form-row">
+            <a class="submit-btn w-button" href="{{ url_for('edit_shop', shop_id = shop.id) }}">Redigér
+                butik</a>
+        </div>
+    </main>
+
+{% endblock %}

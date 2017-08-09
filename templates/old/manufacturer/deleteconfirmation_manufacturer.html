@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <h1>Are you sure you want to delete this entry?</h1>
+    <div class="form-section">
+        <div class="form-container">
+            <div class="form-block w-form">
+                <h1 class="heading-2">{{ manufacturer.name }}</h1>
+                <form class="form" action="{{ url_for('delete_manufacturer', manufacturer_id = manufacturer.id) }}"
+                      method="POST">
+                    <input class="submit-button w-button" type='submit' value='Delete'>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

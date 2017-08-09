@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <main class="card-container">
+        <img class="image big" src="../../../static/uploads/images/{{ manufacturer.up_file }}">
+        <h1 class="front-header">{{ manufacturer.name }}</h1>
+        <div class="card">
+            <img class="image" src="../../../static/uploads/images/{{ manufacturer.up_file }}">
+            <h3 class="card-title">{{ manufacturer.description }}</h3>
+            <p class="card-subtitle">{{ manufacturer.shop_id }}</p>
+            <p class="card-subtitle">{{ manufacturer.manufacturer_id }}</p>
+            <p class="card-subtitle">{{ manufacturer.ingredients }}</p>
+        </div>
+        <div class="form-row">
+            <a class="submit-btn w-button" href="{{ url_for('edit_manufacturer', manufacturer_id = manufacturer.id) }}">Redigér
+                producent</a>
+        </div>
+    </main>
+
+{% endblock %}

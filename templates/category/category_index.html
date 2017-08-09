@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <main class="card-container">
+        {% for category in category %}
+
+            <div class="card">
+                <a href="{{ url_for('category', category_id = category.id) }}">
+                    <img class="image" src="../../static/uploads/images/{{ category.up_file }}">
+                <h3 class="card-title">{{ category.name }}</h3>
+                <p class="card-subtitle">{{ category.description }}</p></a>
+                <div class="card-actions w-clearfix">
+                    <div class="card-actions-container w-clearfix">
+                        <a class="card-button category w-button"
+                           href="{{ url_for('edit_category', category_id = category.id) }}">Redigér</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </main>
+
+{% endblock %}

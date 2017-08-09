@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <main class="card-container">
+        <img class="image big" src="../../../static/uploads/images/{{ item.up_file }}">
+        <h1 class="front-header">{{ item.name }}</h1>
+        <div class="card">
+            <img class="image" src="../../../static/uploads/images/{{ item.up_file }}">
+            <h3 class="card-title">{{ item.description }}</h3>
+            <p class="card-subtitle">{{ item.shop_id }}</p>
+            <p class="card-subtitle">{{ item.manufacturer_id }}</p>
+            <p class="card-subtitle">{{ item.ingredients }}</p>
+        </div>
+    </main>
+
+{% endblock %}

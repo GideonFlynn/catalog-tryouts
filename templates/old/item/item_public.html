@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div class="categories shop">
+        <h1 class="heading-2">{{ item.name }}</h1>
+        <p class="paragraph-2">{{ item.description }}</p>
+        <div class="image item-image"></div>
+        <div class="item-content">
+            <div class="ingredients">
+                <h2 class="heading-3">Ingredients:</h2>
+                <ul class="unordered-list">
+                    <li class="list-item">{{ item.ingredients }}</li>
+                </ul>
+            </div>
+            <div class="divider"></div>
+            <p class="paragraph-3">{{ item.description }}</p>
+        </div>
+    </div>
+
+{% endblock %}

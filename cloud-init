@@ -1,0 +1,74 @@
+#cloud-config
+users:
+  - name: gideon
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDErS3GaPYZBFUR8D8SdIwJcaLO6pOALmw+HQHPauF93HxGXHl+nvENKFqn8aBweIpuXhGWVynFJL9JQVo2Wm6Zdq5L3jzYbYpeFoXoOA0+OYMYvB88P4RJab83VDfKmdaBTbMIDXpok19ZhCzXhvSVubsH8c0J4nCEjGMIIbm8jjZHxxC51r886LiDz7kkuAHOaEaVtdP2JbhXeAQGjWmaWSa95naY5tToFkFSKgowtUlU9gDJzNks1w7vfoL3lPSzEyt5g+zFkYKScruyiad860MpjCMS/+FKg51SCr+vhclDdVJkxPNkM+/KawroQ6xkt4OFbiO4swMKgM6/BkZ9 allmy@DESKTOP-OU04DG2
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+runcmd:
+  - sed -i -e '/^Port/s/^.*$/Port 2222/' /etc/ssh/sshd_config
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers gideon' /etc/ssh/sshd_config
+  - apt-get -y update
+  - apt-get -y install finger
+  - apt-get -y install python2.7 python-pip
+  - - H pip2 install --upgrade pip
+  - pip install virtualenv
+  - apt-get -y install postgresql postgresql-contrib
+  - apt-get -y install apache2 libapache2-mod-wsgi
+  - apt-get -y install python-dev
+  - apt-get -y install git
+  - apt-get -y update
+  - apt-get -y upgrade
+  - apt-get -y autoremove
+  - git clone -b Redesign https://github.com/GideonFlynn/Item-Catalog.git /var/www/flaskapps/catalog
+  - chmod 777 -R /var/www/flaskapps/catalog/static/uploads
+  - rm -rf /var/www/flaskapps/catalog/.git
+  - a2enmod wsgi
+  - a2ensite catalog
+  - var/www/flaskapps/catalog
+  - pip install virtualenv
+  - apt-get y update
+  - apt-get -y dist-upgrade
+  - service ssh restart
+  - service postgresql restart
+  - apt-get install apt-transport-https ca-certificates curl software-properties-common
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - apt-get update
+  - apt-get install docker-ce
+  - apt install -y docker.io
+  - apt-get autoremove
+write_files:
+  - path: /etc/apache2/sites-available/catalog.conf
+    content: |
+        <VirtualHost *:80>
+                    ServerName < server-IP >
+                    ServerAlias < DNS >
+                    ServerAdmin < admin-email@example.com >
+                    WSGIScriptAlias / /var/www/flaskapps/catalog.wsgi
+                    <Directory /var/www/flaskapps/catalog/>
+                            Order allow,deny
+                    </Directory>
+                    Alias /static /var/www/flaskapps/catalog/static
+                    <Directory /var/www/flaskapps/catalog/static/>
+                            Order allow,deny
+                            Allow from all
+                    </Directory>
+                    ErrorLog ${APACHE_LOG_DIR}/error.log
+                    LogLevel warn
+                    CustomLog ${APACHE_LOG_DIR}/access.log combined
+        </VirtualHost>
+  - path: /var/www/flaskapps/catalog.wsgi
+    content: |
+        #!/usr/bin/python
+        import sys
+        import logging
+        logging.basicConfig(stream=sys.stderr)
+        sys.path.insert(0,"/var/www/flaskapps/catalog")
+
+        from catalog import app as application
+        application.secret_key = 'Add your secret key'
+power_state:
+  mode: reboot
